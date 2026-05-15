@@ -1,6 +1,6 @@
 package com.pluralsight.contracts;
 import com.pluralsight.product.Vehicle;
-import com.pluralsight.dealership.CarDealership;
+
 
 public class SalesContract extends Contract {
     //Properties

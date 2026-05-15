@@ -1,5 +1,4 @@
 package com.pluralsight.contracts;
-
 import com.pluralsight.product.Vehicle;
 
 public class LeaseContract extends Contract{
