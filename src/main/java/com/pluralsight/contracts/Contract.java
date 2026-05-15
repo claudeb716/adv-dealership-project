@@ -12,11 +12,13 @@ public abstract class Contract {
     private double price;
     private double mPayments;
     //Constructor
-    public Contract( String email, String name, boolean isSold) {
+    public Contract( String email, String name, boolean isSold,double price, double mPayments) {
         this.date = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
         this.email = email;
         this.name = name;
         this.isSold = isSold;
+        this.price = price;
+        this.mPayments = mPayments;
     }
     //Getters
 
@@ -50,7 +52,7 @@ public abstract class Contract {
     }
 
     public void setSold(boolean sold) {
-        isSold = sold;
+        this.isSold = sold;
     }
 
     //Abstract Methods

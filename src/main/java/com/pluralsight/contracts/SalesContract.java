@@ -9,17 +9,53 @@ public class SalesContract extends Contract {
     private int processingFee;
     private boolean financeOption;
     //Constructor
-    public SalesContract(String email, String name, boolean isSold, double salesTaxAmount, int recordingFee, int processingFee, boolean financeOption) {
-        super(email, name, isSold);
+    public SalesContract(String email, String name, boolean isSold, double price, double mPayments, double salesTaxAmount, int recordingFee, int processingFee, boolean financeOption) {
+        super(email, name, isSold, price, mPayments);
         this.salesTaxAmount = salesTaxAmount;
         this.recordingFee = recordingFee;
         this.processingFee = processingFee;
+        this.financeOption = financeOption;
+    }
+//Getters and Setters
+    public double getSalesTaxAmount() {
+        return salesTaxAmount;
+    }
+
+    public void setSalesTaxAmount(double salesTaxAmount) {
+        this.salesTaxAmount = salesTaxAmount;
+    }
+
+    public int getRecordingFee() {
+        return recordingFee;
+    }
+
+    public void setRecordingFee(int recordingFee) {
+        this.recordingFee = recordingFee;
+    }
+
+    public int getProcessingFee() {
+        return processingFee;
+    }
+
+    public void setProcessingFee(int processingFee) {
+        this.processingFee = processingFee;
+    }
+
+    public boolean isFinanceOption() {
+        return financeOption;
+    }
+
+    public void setFinanceOption(boolean financeOption) {
         this.financeOption = financeOption;
     }
 
     @Override
     public double getPrice() {
         return getVehicleSold().getPrice() + salesTaxAmount + recordingFee + processingFee;
+    }
+
+    private Vehicle getVehicleSold() {
+            return null;
     }
 
     @Override
