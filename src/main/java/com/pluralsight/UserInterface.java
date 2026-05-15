@@ -1,4 +1,6 @@
 package com.pluralsight;
+import com.pluralsight.product.Vehicle;
+import com.pluralsight.dealership.Dealership;
 
 import java.util.List;
 import java.util.Scanner;
