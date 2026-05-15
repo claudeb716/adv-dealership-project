@@ -7,8 +7,8 @@ public class LeaseContract extends Contract{
     private double leaseFee;
     //Constructor
 
-    public LeaseContract(String email, String name, boolean isSold, double price, double mPayments, double expectedEndingValue, double leaseFee) {
-        super(email, name, isSold, price, mPayments);
+    public LeaseContract(String email, String name, Vehicle vehicleSold, double expectedEndingValue, double leaseFee) {
+        super(email, name, vehicleSold);
         this.expectedEndingValue = expectedEndingValue;
         this.leaseFee = leaseFee;
     }
@@ -34,12 +34,8 @@ public class LeaseContract extends Contract{
         return (getVehicleSold().getPrice() - expectedEndingValue) + leaseFee;
     }
 
-    private Vehicle getVehicleSold() {
-        return null;
-    }
-
     @Override
-    public double getmPayments() {
+    public double getMonthlyPayments() {
         int numberOfPayments = 36;
         double interestRate = 4.0 / 1200;
         double monthlyPayment = getPrice() * (interestRate * Math.pow(1 + interestRate, numberOfPayments)) / (Math.pow(1 + interestRate, numberOfPayments) - 1);

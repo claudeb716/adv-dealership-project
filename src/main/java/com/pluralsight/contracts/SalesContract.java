@@ -9,8 +9,8 @@ public class SalesContract extends Contract {
     private int processingFee;
     private boolean financeOption;
     //Constructor
-    public SalesContract(String email, String name, boolean isSold, double price, double mPayments, double salesTaxAmount, int recordingFee, int processingFee, boolean financeOption) {
-        super(email, name, isSold, price, mPayments);
+    public SalesContract(String email, String name, Vehicle vehicleSold, double salesTaxAmount, int recordingFee, int processingFee, boolean financeOption) {
+        super(email, name, vehicleSold);
         this.salesTaxAmount = salesTaxAmount;
         this.recordingFee = recordingFee;
         this.processingFee = processingFee;
@@ -54,14 +54,10 @@ public class SalesContract extends Contract {
         return getVehicleSold().getPrice() + salesTaxAmount + recordingFee + processingFee;
     }
 
-    private Vehicle getVehicleSold() {
-            return null;
-    }
-
     @Override
-    public double getmPayments() {
-        int numberOfPayments = 0;
-        double interestRate = 0;
+    public double getMonthlyPayments() {
+        int numberOfPayments;
+        double interestRate;
         if (financeOption) {
             if (getVehicleSold().getPrice() >= 10000) {
                 numberOfPayments = 48;

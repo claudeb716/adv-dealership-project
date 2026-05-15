@@ -1,4 +1,6 @@
 package com.pluralsight.contracts;
+import com.pluralsight.product.Vehicle;
+
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -7,17 +9,15 @@ public abstract class Contract {
     private String date;
     private String name;
     private String email;
-    private boolean isSold;
-    private double price;
-    private double mPayments;
+    private Vehicle vehicleSold;
+
     //Constructor
-    public Contract( String email, String name, boolean isSold,double price, double mPayments) {
+    public Contract( String email, String name, Vehicle vehicleSold) {
         this.date = LocalDateTime.now().format(DateTimeFormatter.ISO_DATE);
         this.email = email;
         this.name = name;
-        this.isSold = isSold;
-        this.price = price;
-        this.mPayments = mPayments;
+        this.vehicleSold = vehicleSold;
+
     }
     //Getters
 
@@ -33,8 +33,8 @@ public abstract class Contract {
         return email;
     }
 
-    public boolean isSold() {
-        return isSold;
+    public Vehicle getVehicleSold() {
+        return vehicleSold;
     }
     //Setters
 
@@ -50,11 +50,11 @@ public abstract class Contract {
         this.email = email;
     }
 
-    public void setSold(boolean sold) {
-        this.isSold = sold;
+    public void vehicleSold (Vehicle vehicleSold) {
+        this.vehicleSold = vehicleSold;
     }
 
     //Abstract Methods
     public abstract double getPrice();
-    public abstract double getmPayments();
+    public abstract double getMonthlyPayments();
 }
