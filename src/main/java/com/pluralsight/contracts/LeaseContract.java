@@ -7,10 +7,10 @@ public class LeaseContract extends Contract{
     private double leaseFee;
     //Constructor
 
-    public LeaseContract(String email, String name, Vehicle vehicleSold, double expectedEndingValue, double leaseFee) {
+    public LeaseContract(String email, String name, Vehicle vehicleSold) {
         super(email, name, vehicleSold);
-        this.expectedEndingValue = expectedEndingValue;
-        this.leaseFee = leaseFee;
+        this.expectedEndingValue = getPrice();
+        this.leaseFee = getMonthlyPayments();
     }
     //Getters and Setters
     public double getExpectedEndingValue() {

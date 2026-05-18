@@ -1,7 +1,12 @@
 package com.pluralsight;
+import com.pluralsight.contracts.Contract;
+import com.pluralsight.contracts.ContractFileManger;
+import com.pluralsight.contracts.LeaseContract;
+import com.pluralsight.contracts.SalesContract;
 import com.pluralsight.product.Vehicle;
 import com.pluralsight.dealership.Dealership;
 import com.pluralsight.dealership.DealershipFileManager;
+
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,6 +33,7 @@ public class UserInterface {
             System.out.println("7. Get all vehicles");
             System.out.println("8. Add vehicle");
             System.out.println("9. Remove vehicle");
+            System.out.println("0. Sell or Lease Vehicle");
             System.out.println("99. Quit");
 
             System.out.print("Enter your choice: ");
@@ -60,6 +66,9 @@ public class UserInterface {
                     break;
                 case "9":
                     processRemoveVehicleRequest();
+                    break;
+                case "0":
+                    processSellOrLeaseVehicle();
                     break;
                 case "99":
                     quit = true;
@@ -194,6 +203,43 @@ public class UserInterface {
         for (Vehicle vehicle : vehicles) {
             System.out.println(vehicle.toString());
         }
+    }
+    public void processSellOrLeaseVehicle(){
+        //Display all vehicles first
+        System.out.println("Enter the Vin");
+        int vin = scanner.nextInt();
+        // Loop through vehicles in dealership
+        Vehicle selectedVehicle = null;
+        for (Vehicle v : dealership.getAllVehicles()){
+            if (v.getVin() == vin){ // if vehicle vin match user input
+                selectedVehicle = v; // save vehicle
+                break;
+            }
+            // Ask for which contract we are making
+        }
+        System.out.println("Enter Email");
+        String email = scanner.nextLine();
+
+        System.out.println("Enter Name");
+        String name = scanner.nextLine();
+
+        System.out.println("SALE or LEASE?");
+        String typeContract = scanner.nextLine().trim().toUpperCase();
+        // if statement user input equals contract type
+        Contract contract = null;
+        if (typeContract.equals("SALE")) {
+            System.out.println("Finance (YES/NO)?");
+            String finance = scanner.nextLine().trim().toUpperCase();
+            boolean isFinanced = finance.equals("YES");
+
+            contract = new SalesContract(email,name,selectedVehicle,isFinanced);
+        } else if (typeContract.equals("LEASE")) {
+
+            contract = new LeaseContract(email,name,selectedVehicle);
+        }
+        //Save contract
+        ContractFileManger cfm = new ContractFileManger();
+        cfm.saveContract(contract);
     }
 
 }

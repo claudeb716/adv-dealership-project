@@ -19,7 +19,7 @@ public class ContractFileManger {
            }
            bw.newLine();
 
-       } catch (Exception e) {
+       } catch (IOException e) {
            System.err.println(" Could not save Contract" + e.getMessage());
        }
 

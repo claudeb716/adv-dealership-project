@@ -9,11 +9,10 @@ public class SalesContract extends Contract {
     private int processingFee;
     private boolean financeOption;
     //Constructor
-    public SalesContract(String email, String name, Vehicle vehicleSold, double salesTaxAmount, int recordingFee, int processingFee, boolean financeOption) {
+    public SalesContract(String email, String name, Vehicle vehicleSold, boolean financeOption) {
         super(email, name, vehicleSold);
-        this.salesTaxAmount = salesTaxAmount;
-        this.recordingFee = recordingFee;
-        this.processingFee = processingFee;
+        double vehicleTotalPrice = vehicleSold.getPrice();
+        double monthlyPayments = getMonthlyPayments();
         this.financeOption = financeOption;
     }
 //Getters and Setters
